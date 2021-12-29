@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
+import { client } from '../client';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -17,9 +18,9 @@ export default function Login() {
           userName: name,
           image: imageUrl
         };
-        // client.createIfNotExists(doc).then(() => {
-        //   navigate('/', { replace: true });
-        // });
+        client.createIfNotExists(doc).then(() => {
+          navigate('/', { replace: true });
+        });
     }
 
     return (
