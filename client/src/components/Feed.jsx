@@ -1,35 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import MasonryLayout from './MasonryLayout';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+
 import { client } from '../client';
 import { feedQuery, searchQuery } from '../utils/data';
+import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
 
-export default function Search({ searchTerm }) {
+export default function Feed() {
     const [pins, setPins] = useState();
     const [loading, setLoading] = useState(false);
+    const { categoryId } = useParams();
 
     useEffect(() => {
-        if (searchTerm !== '') {
+        if(categoryId) {
           setLoading(true);
-          const query = searchQuery(searchTerm.toLowerCase());
+          const query = searchQuery(categoryId);
           client.fetch(query).then((data) => {
             setPins(data);
             setLoading(false);
           });
         } else {
+          setLoading(true);
+    
           client.fetch(feedQuery).then((data) => {
             setPins(data);
             setLoading(false);
           });
         }
-    }, [searchTerm]);
+    }, [categoryId]);
+
+    const ideaName = categoryId || 'new';
+
+    if (loading) {
+        return (
+          <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />
+        );
+    }
 
     return (
         <div>
-            {loading && <Spinner message="Searching pins" />}
-            {pins?.length !== 0 && <MasonryLayout pins={pins} />}
-            {pins?.length === 0 && searchTerm !== '' && !loading && (
-              <div className="mt-10 text-center text-xl ">No Pins Found!</div>
+            {pins && (
+                <MasonryLayout pins={pins} />
             )}
         </div>
     )
