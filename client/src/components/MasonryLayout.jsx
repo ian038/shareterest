@@ -1,5 +1,6 @@
 import React from 'react'
 import Masonry from 'react-masonry-css';
+import Pin from './Pin';
 
 const breakpointColumnsObj = {
     default: 4,
@@ -13,7 +14,7 @@ const breakpointColumnsObj = {
 export default function MasonryLayout({ pins }) {
     return (
         <Masonry className="flex animate-slide-fwd" breakpointCols={breakpointColumnsObj}>
-            {/* {pins?.map((pin) => <Pin key={pin._id} pin={pin} className="w-max" />)} */}
+            {pins?.map((pin) => <Pin key={pin._id} pin={pin} className="w-max" />)}
         </Masonry>
     )
 }

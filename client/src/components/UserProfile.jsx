@@ -50,6 +50,8 @@ export default function UserProfile() {
         navigate('/login');
     }
 
+    if (!user) return <Spinner message="Loading profile" />;
+
     return (
         <div className="relative pb-2 h-full justify-center items-center">
             <div className="flex flex-col pb-5">
@@ -117,9 +119,9 @@ export default function UserProfile() {
             </div>
     
             {pins?.length === 0 && (
-            <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
-                No Pins Found!
-            </div>
+                <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
+                    No Pins Found!
+                </div>
             )}
             </div>
         </div>
