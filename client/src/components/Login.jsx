@@ -54,7 +54,7 @@ export default function Login() {
                     )}
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
-                    cookiePolicy="single_host_origin"
+                    cookiePolicy={'single_host_origin'}
                 />
                 </div>
             </div>

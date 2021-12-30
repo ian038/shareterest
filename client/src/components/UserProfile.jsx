@@ -100,7 +100,7 @@ export default function UserProfile() {
                 }}
                 className={`${activeBtn === 'created' ? activeBtnStyles : notActiveBtnStyles}`}
                 >
-                Created
+                    Created
                 </button>
                 <button
                 type="button"
@@ -110,7 +110,7 @@ export default function UserProfile() {
                 }}
                 className={`${activeBtn === 'saved' ? activeBtnStyles : notActiveBtnStyles}`}
                 >
-                Saved
+                    Saved
                 </button>
             </div>
     
